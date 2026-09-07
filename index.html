@@ -1,0 +1,1234 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Little Notes 💌</title>
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Comic Sans MS", "Segoe UI", sans-serif;
+      background: linear-gradient(135deg, #fff0f5, #ffe1eb);
+      color: #633f4c;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      overflow-x: hidden;
+    }
+
+
+    /* FLOATING HEARTS */
+
+    .heart {
+      position: fixed;
+      color: #ee8eac;
+      font-size: 25px;
+      opacity: 0.45;
+
+      animation: float 5s ease-in-out infinite;
+
+      pointer-events: none;
+    }
+
+    .heart:nth-child(1) {
+      left: 8%;
+      top: 15%;
+    }
+
+    .heart:nth-child(2) {
+      right: 10%;
+      top: 20%;
+      animation-delay: 1s;
+    }
+
+    .heart:nth-child(3) {
+      left: 15%;
+      bottom: 15%;
+      animation-delay: 2s;
+    }
+
+    .heart:nth-child(4) {
+      right: 12%;
+      bottom: 18%;
+      animation-delay: 3s;
+    }
+
+
+    @keyframes float {
+
+      0%, 100% {
+        transform: translateY(0) rotate(0deg);
+      }
+
+      50% {
+        transform: translateY(-18px) rotate(5deg);
+      }
+
+    }
+
+
+    /* MAIN CARD */
+
+    .container {
+
+      width: 92%;
+      max-width: 520px;
+
+      background: rgba(255, 255, 255, 0.95);
+
+      padding: 35px;
+
+      border-radius: 30px;
+
+      border: 2px solid #ffd5e2;
+
+      box-shadow:
+        0 20px 50px rgba(200, 100, 130, 0.18);
+
+      text-align: center;
+
+    }
+
+
+    /* HEADER */
+
+    .logo {
+      font-size: 55px;
+
+      animation: gentleBounce 2s infinite;
+    }
+
+
+    @keyframes gentleBounce {
+
+      0%, 100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-5px);
+      }
+
+    }
+
+
+    h1 {
+
+      margin: 5px 0;
+
+      color: #d75f86;
+
+      font-size: 34px;
+
+    }
+
+
+    .subtitle {
+
+      color: #a77b89;
+
+      font-size: 14px;
+
+      margin-bottom: 28px;
+
+    }
+
+
+    /* FORM */
+
+    .form {
+
+      text-align: left;
+
+    }
+
+
+    label {
+
+      display: block;
+
+      margin-top: 16px;
+
+      margin-bottom: 7px;
+
+      color: #805463;
+
+      font-size: 14px;
+
+    }
+
+
+    input,
+    textarea {
+
+      width: 100%;
+
+      padding: 14px;
+
+      border-radius: 15px;
+
+      border: 2px solid #f5d5df;
+
+      background: #fff9fb;
+
+      font-family: inherit;
+
+      font-size: 15px;
+
+      outline: none;
+
+      color: #633f4c;
+
+      transition: 0.25s;
+
+    }
+
+
+    input:focus,
+    textarea:focus {
+
+      border-color: #e995af;
+
+      background: white;
+
+      box-shadow: 0 0 0 4px #fff0f5;
+
+    }
+
+
+    textarea {
+
+      height: 140px;
+
+      resize: none;
+
+    }
+
+
+    /* MAIN BUTTON */
+
+    .main-btn {
+
+      width: 100%;
+
+      margin-top: 22px;
+
+      padding: 15px;
+
+      border: none;
+
+      border-radius: 16px;
+
+      background: linear-gradient(
+        135deg,
+        #ed86a5,
+        #d85f87
+      );
+
+      color: white;
+
+      font-family: inherit;
+
+      font-size: 16px;
+
+      cursor: pointer;
+
+      box-shadow:
+        0 8px 20px rgba(216, 95, 135, 0.25);
+
+      transition: 0.25s;
+
+    }
+
+
+    .main-btn:hover {
+
+      transform: translateY(-3px);
+
+      box-shadow:
+        0 12px 25px rgba(216, 95, 135, 0.3);
+
+    }
+
+
+    /* SUCCESS */
+
+    .success {
+
+      margin-top: 25px;
+
+      padding: 20px;
+
+      background: #fff3c9;
+
+      border-radius: 18px;
+
+      text-align: center;
+
+      animation: appear 0.5s ease;
+
+    }
+
+
+    @keyframes appear {
+
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+    }
+
+
+    .share-link {
+
+      background: white;
+
+      border-radius: 12px;
+
+      padding: 10px;
+
+      margin-top: 12px;
+
+      font-size: 12px;
+
+      word-break: break-all;
+
+      color: #c45c7b;
+
+    }
+
+
+    .copy-btn {
+
+      margin-top: 12px;
+
+      padding: 9px 18px;
+
+      border: none;
+
+      border-radius: 12px;
+
+      background: #e783a1;
+
+      color: white;
+
+      font-family: inherit;
+
+      cursor: pointer;
+
+    }
+
+
+    /* ===================================
+       ENVELOPE
+       =================================== */
+
+    #noteScreen {
+
+      display: none;
+
+      text-align: center;
+
+    }
+
+
+    .envelope-area {
+
+      margin-top: 20px;
+
+      perspective: 1000px;
+
+    }
+
+
+    .envelope {
+
+      position: relative;
+
+      width: 280px;
+
+      height: 190px;
+
+      margin: 40px auto;
+
+      cursor: pointer;
+
+      transition: transform 0.3s;
+
+    }
+
+
+    .envelope:hover {
+
+      transform: translateY(-5px);
+
+    }
+
+
+    /* ENVELOPE BODY */
+
+    .envelope-body {
+
+      position: absolute;
+
+      bottom: 0;
+
+      width: 100%;
+
+      height: 145px;
+
+      background: #f58fac;
+
+      border-radius: 5px;
+
+      box-shadow:
+        0 15px 30px rgba(200, 90, 120, 0.25);
+
+      z-index: 2;
+
+    }
+
+
+    /* LEFT FOLD */
+
+    .envelope-body::before {
+
+      content: "";
+
+      position: absolute;
+
+      left: 0;
+
+      bottom: 0;
+
+      width: 0;
+
+      height: 0;
+
+      border-left: 140px solid #e87999;
+
+      border-top: 72px solid transparent;
+
+      border-bottom: 72px solid transparent;
+
+    }
+
+
+    /* RIGHT FOLD */
+
+    .envelope-body::after {
+
+      content: "";
+
+      position: absolute;
+
+      right: 0;
+
+      bottom: 0;
+
+      width: 0;
+
+      height: 0;
+
+      border-right: 140px solid #e87999;
+
+      border-top: 72px solid transparent;
+
+      border-bottom: 72px solid transparent;
+
+    }
+
+
+    /* FLAP */
+
+    .flap {
+
+      position: absolute;
+
+      top: 20px;
+
+      left: 0;
+
+      width: 0;
+
+      height: 0;
+
+      border-left: 140px solid transparent;
+
+      border-right: 140px solid transparent;
+
+      border-top: 80px solid #f7a1b8;
+
+      transform-origin: top center;
+
+      transition: transform 1s ease;
+
+      z-index: 4;
+
+    }
+
+
+    /* HEART SEAL */
+
+    .seal {
+
+      position: absolute;
+
+      left: 50%;
+
+      top: 95px;
+
+      transform: translate(-50%, -50%);
+
+      width: 48px;
+
+      height: 48px;
+
+      background: #d95780;
+
+      border-radius: 50%;
+
+      display: flex;
+
+      justify-content: center;
+
+      align-items: center;
+
+      font-size: 25px;
+
+      color: white;
+
+      z-index: 5;
+
+      box-shadow:
+        0 5px 15px rgba(190, 70, 110, 0.3);
+
+      transition: 0.5s;
+
+    }
+
+
+    /* OPEN ANIMATION */
+
+    .envelope.open .flap {
+
+      transform: rotateX(180deg);
+
+      z-index: 1;
+
+    }
+
+
+    .envelope.open .seal {
+
+      opacity: 0;
+
+      transform:
+        translate(-50%, -50%)
+        scale(0.5);
+
+    }
+
+
+    /* NOTE */
+
+    .letter {
+
+      position: absolute;
+
+      width: 245px;
+
+      min-height: 210px;
+
+      left: 50%;
+
+      bottom: 25px;
+
+      transform:
+        translateX(-50%)
+        translateY(100px);
+
+      background: #fffdf4;
+
+      border-radius: 10px;
+
+      padding: 25px;
+
+      box-shadow:
+        0 8px 25px rgba(120, 80, 80, 0.15);
+
+      z-index: 3;
+
+      opacity: 0;
+
+      transition:
+        transform 1.2s ease,
+        opacity 0.8s ease;
+
+      text-align: left;
+
+    }
+
+
+    .envelope.open .letter {
+
+      transform:
+        translateX(-50%)
+        translateY(-80px);
+
+      opacity: 1;
+
+    }
+
+
+    .letter h2 {
+
+      margin-top: 0;
+
+      color: #d45f82;
+
+      font-size: 20px;
+
+    }
+
+
+    .letter p {
+
+      line-height: 1.7;
+
+      white-space: pre-wrap;
+
+      font-size: 15px;
+
+    }
+
+
+    .tap-text {
+
+      color: #b27687;
+
+      font-size: 14px;
+
+      margin-top: -10px;
+
+    }
+
+
+    .hidden {
+
+      display: none !important;
+
+    }
+
+
+    .error {
+
+      color: #d45d78;
+
+      text-align: center;
+
+      margin-top: 15px;
+
+      font-size: 14px;
+
+    }
+
+
+    .footer {
+
+      margin-top: 25px;
+
+      color: #b995a1;
+
+      font-size: 12px;
+
+    }
+
+
+    /* MOBILE */
+
+    @media (max-width: 500px) {
+
+      .container {
+
+        padding: 25px;
+
+      }
+
+      h1 {
+
+        font-size: 30px;
+
+      }
+
+      .envelope {
+
+        transform: scale(0.85);
+
+      }
+
+      .envelope:hover {
+
+        transform: scale(0.85);
+
+      }
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <!-- FLOATING HEARTS -->
+
+  <div class="heart">♡</div>
+  <div class="heart">♡</div>
+  <div class="heart">♡</div>
+  <div class="heart">♡</div>
+
+  <!-- MAIN CONTAINER -->
+
+  <div class="container">
+
+```
+<!-- WRITE SCREEN -->
+
+<div id="writeScreen">
+
+  <div class="logo">💌</div>
+
+  <h1>Little Notes</h1>
+
+  <p class="subtitle">
+    tiny messages for the people who mean a lot ♡
+  </p>
+
+
+  <div class="form">
+
+    <label>💗 To</label>
+
+    <input
+      id="toName"
+      type="text"
+      placeholder="someone special..."
+    >
+
+
+    <label>🌷 From</label>
+
+    <input
+      id="fromName"
+      type="text"
+      placeholder="your name"
+    >
+
+
+    <label>💌 Your little note</label>
+
+    <textarea
+      id="message"
+      placeholder="Write something they can keep forever..."
+    ></textarea>
+
+
+    <button
+      class="main-btn"
+      id="sealBtn"
+    >
+      💕 Seal the note
+    </button>
+
+
+    <div id="result"></div>
+
+  </div>
+
+
+  <div class="footer">
+    made with ♡ for little moments
+  </div>
+
+</div>
+
+
+<!-- NOTE SCREEN -->
+
+<div id="noteScreen">
+
+  <div class="logo">💌</div>
+
+  <h1>Someone sent you a little note ♡</h1>
+
+  <p class="subtitle">
+    Tap the envelope to open it
+  </p>
+
+
+  <div class="envelope-area">
+
+
+    <div
+      class="envelope"
+      id="envelope"
+    >
+
+      <div class="letter">
+
+        <h2 id="letterTo"></h2>
+
+        <p id="letterMessage"></p>
+
+        <p>
+          With love,<br>
+          <strong id="letterFrom"></strong> ♡
+        </p>
+
+      </div>
+
+
+      <div class="envelope-body"></div>
+
+      <div class="flap"></div>
+
+      <div class="seal">
+        ♥
+      </div>
+
+    </div>
+
+
+    <p
+      class="tap-text"
+      id="tapText"
+    >
+      💗 tap the envelope 💗
+    </p>
+
+  </div>
+
+
+  <div class="footer">
+    a little note made with lots of love ♡
+  </div>
+
+</div>
+```
+
+  </div>
+
+  <!-- FIREBASE -->
+
+  <script type="module">
+
+
+    import { initializeApp }
+
+      from
+      "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+
+
+    import {
+
+      getDatabase,
+      ref,
+      set,
+      get
+
+    }
+
+      from
+      "https://www.gstatic.com/firebasejs/12.18.0/firebase-database.js";
+
+
+    /* FIREBASE CONFIG */
+
+    const firebaseConfig = {
+
+      apiKey:
+        "AIzaSyBzyuvkqzFARlmC1TmkfO-wBeXcFdNm9bE",
+
+      authDomain:
+        "little-notes-195b5.firebaseapp.com",
+
+      databaseURL:
+        "https://little-notes-195b5-default-rtdb.firebaseio.com",
+
+      projectId:
+        "little-notes-195b5",
+
+      storageBucket:
+        "little-notes-195b5.firebasestorage.app",
+
+      messagingSenderId:
+        "615068864767",
+
+      appId:
+        "1:615068864767:web:74f99df596d7347fd17cca"
+
+    };
+
+
+    const app = initializeApp(firebaseConfig);
+
+    const database = getDatabase(app);
+
+
+    /* ===================================
+       GENERATE UNIQUE ID
+       =================================== */
+
+    function generateID() {
+
+      const characters =
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+      let id = "";
+
+      for (let i = 0; i < 12; i++) {
+
+        id += characters[
+          Math.floor(
+            Math.random() * characters.length
+          )
+        ];
+
+      }
+
+      return id;
+
+    }
+
+
+    /* ===================================
+       CREATE NOTE
+       =================================== */
+
+    document
+      .getElementById("sealBtn")
+      .addEventListener("click", async () => {
+
+
+        const to =
+          document
+            .getElementById("toName")
+            .value
+            .trim();
+
+
+        const from =
+          document
+            .getElementById("fromName")
+            .value
+            .trim();
+
+
+        const message =
+          document
+            .getElementById("message")
+            .value
+            .trim();
+
+
+        const result =
+          document.getElementById("result");
+
+
+        if (!to || !from || !message) {
+
+          result.innerHTML =
+            `<div class="error">
+              Please fill in everything 💗
+            </div>`;
+
+          return;
+
+        }
+
+
+        const id = generateID();
+
+
+        try {
+
+
+          await set(
+
+            ref(
+              database,
+              "notes/" + id
+            ),
+
+            {
+
+              to: to,
+
+              from: from,
+
+              message: message,
+
+              createdAt: Date.now()
+
+            }
+
+          );
+
+
+          const link =
+            window.location.href
+            .split("?")[0]
+            + "?note="
+            + id;
+
+
+          result.innerHTML = `
+
+            <div class="success">
+
+              <strong>
+                💌 Your note is sealed!
+              </strong>
+
+              <p>
+                Send this little link to them ♡
+              </p>
+
+              <div class="share-link">
+                ${link}
+              </div>
+
+              <button
+                class="copy-btn"
+                id="copyBtn"
+              >
+                🔗 Copy link
+              </button>
+
+            </div>
+
+          `;
+
+
+          document
+            .getElementById("copyBtn")
+            .addEventListener(
+              "click",
+              async () => {
+
+                await navigator.clipboard.writeText(link);
+
+                document
+                  .getElementById("copyBtn")
+                  .textContent =
+                    "💗 Link copied!";
+
+              }
+            );
+
+
+          /* CLEAR FORM */
+
+          document
+            .getElementById("toName")
+            .value = "";
+
+          document
+            .getElementById("fromName")
+            .value = "";
+
+          document
+            .getElementById("message")
+            .value = "";
+
+
+        }
+
+        catch (error) {
+
+          console.error(error);
+
+          result.innerHTML =
+            `<div class="error">
+              Something went wrong 😭
+            </div>`;
+
+        }
+
+
+      });
+
+
+    /* ===================================
+       OPEN NOTE FROM LINK
+       =================================== */
+
+    async function openNote() {
+
+
+      const params =
+        new URLSearchParams(
+          window.location.search
+        );
+
+
+      const noteID =
+        params.get("note");
+
+
+      if (!noteID) {
+
+        return;
+
+      }
+
+
+      const writeScreen =
+        document.getElementById(
+          "writeScreen"
+        );
+
+
+      const noteScreen =
+        document.getElementById(
+          "noteScreen"
+        );
+
+
+      writeScreen.classList.add("hidden");
+
+      noteScreen.style.display = "block";
+
+
+      try {
+
+
+        const snapshot =
+          await get(
+
+            ref(
+              database,
+              "notes/" + noteID
+            )
+
+          );
+
+
+        if (!snapshot.exists()) {
+
+          noteScreen.innerHTML = `
+
+            <div class="logo">🥺</div>
+
+            <h1>Oops!</h1>
+
+            <p class="subtitle">
+              This little note doesn't exist anymore.
+            </p>
+
+          `;
+
+          return;
+
+        }
+
+
+        const note =
+          snapshot.val();
+
+
+        document
+          .getElementById("letterTo")
+          .textContent =
+            "For " + note.to + " 💗";
+
+
+        document
+          .getElementById("letterMessage")
+          .textContent =
+            note.message;
+
+
+        document
+          .getElementById("letterFrom")
+          .textContent =
+            note.from;
+
+
+        const envelope =
+          document.getElementById(
+            "envelope"
+          );
+
+
+        const tapText =
+          document.getElementById(
+            "tapText"
+          );
+
+
+        envelope.addEventListener(
+          "click",
+          () => {
+
+            envelope.classList.add("open");
+
+            tapText.textContent =
+              "💗 A little message just for you 💗";
+
+          }
+        );
+
+
+      }
+
+      catch (error) {
+
+        console.error(error);
+
+        noteScreen.innerHTML = `
+
+          <div class="logo">😭</div>
+
+          <h1>Something went wrong</h1>
+
+          <p class="subtitle">
+            We couldn't open this little note.
+          </p>
+
+        `;
+
+      }
+
+    }
+
+
+    /* CHECK IF THIS IS A NOTE LINK */
+
+    openNote();
+
+
+  </script>
+
+</body>
+
+</html>
